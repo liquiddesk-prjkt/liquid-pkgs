@@ -24,7 +24,8 @@ main()
   for COUNT_OBJECTS in ${OBJECTS[@]}
   do
     cd $COUNT_OBJECTS || exit
-    makepkg -s -f ${OUT}
+    makepkg -s -f
+    mv -f ${COUNT_OBJECTS}/*.pkg.tar.zst ${OUT} 
     cd ..
   done
 }
