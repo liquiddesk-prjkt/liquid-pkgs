@@ -7,7 +7,7 @@
 # Copyright (C) 2022~2023 UsiFX <xprjkts@gmail.com>
 #
 
-OBJECTS=("cask-server-git" "maui-core-git" "maui-settings-git" "maui-shell-git" "mauikit-calendar-git" "mauikit-filebrowsing-git" "mauikit-git" "mauiman-git")
+OBJECTS=("cask-server-git" "maui-core-git" "maui-settings-git" "maui-shell-git" "mauikit-calendar-git" "mauikit-filebrowsing-git" "mauikit-git" "mauiman-git" "cutefish-sddm-theme")
 
 if [[ -z "$object_directory" ]]; then
 	export OUT=$(pwd)/out
@@ -24,7 +24,7 @@ main()
   for COUNT_OBJECTS in ${OBJECTS[@]}
   do
     cd $COUNT_OBJECTS || exit
-    makepkg -s -f && mv -f ${COUNT_OBJECTS}/*.pkg.tar.zst ${OUT} 
+    makepkg -s -f && mv -f *.pkg.tar.zst ${OUT} 
     cd ..
   done
 }
