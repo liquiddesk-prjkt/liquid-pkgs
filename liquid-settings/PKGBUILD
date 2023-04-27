@@ -1,0 +1,29 @@
+# Maintainer: UsiFX <xprjkts@gmail.com>
+
+pkgname=liquid-settings
+pkgver=0.8
+pkgrel=1
+pkgdesc="System Settings application for LiquidOS Desktop"
+arch=('x86_64')
+url="https://github.com/liquiddesk-prjkt/liquid-settings"
+license=('GPL')
+groups=('cutede')
+depends=('fishui' 'fontconfig' 'freetype2' 'icu' 'kcoreaddons' 'libxcursor'
+         'modemmanager-qt' 'networkmanager-qt'
+         # qml:
+         'bluez-qt' 'bluedevil' 'libcutefish' 'qt5-quickcontrols')
+makedepends=('extra-cmake-modules' 'ninja' 'qt5-tools')
+source=("https://github.com/liquiddesk-prjkt/liquid-settings/archive/$pkgver/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+  cd liquid-settings-$pkgver
+
+  cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  make
+}
+
+package() {
+  cd liquid-settings-$pkgver
+  make DESTDIR="$pkgdir" install
+}

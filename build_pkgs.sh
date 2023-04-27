@@ -7,7 +7,7 @@
 # Copyright (C) 2022~2023 UsiFX <xprjkts@gmail.com>
 #
 
-OBJECTS=("cask-server-git" "maui-core-git" "maui-settings-git" "maui-shell-git" "mauikit-calendar-git" "mauikit-filebrowsing-git" "mauikit-git" "mauiman-git" "cutefish-sddm-theme")
+OBJECTS=("liquid-core" "liquid-dock" "liquid-terminal" "liquid-neofetch" "liquid-settings" "liquid-branding-wallpapers" "ttf-material-design-icons" "cutefish-sddm-theme")
 
 if [[ -z "$object_directory" ]]; then
 	export OUT=$(pwd)/out

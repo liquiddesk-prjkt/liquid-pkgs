@@ -1,0 +1,26 @@
+# Maintainer: UsiFX <xprjkts@gmail.com>
+
+pkgname=liquid-terminal
+pkgver=0.1
+pkgrel=1
+pkgdesc="A terminal emulator for CuteDE"
+arch=('x86_64')
+url="https://github.com/liquiddesk-prjkt/liquid-terminal"
+license=('GPL')
+groups=('cutede')
+depends=('fishui' 'qt5-svg')
+makedepends=('extra-cmake-modules' 'qt5-tools')
+source=("https://github.com/liquiddesk-prjkt/liquid-terminal/archive/$pkgver/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+  cd liquid-terminal-$pkgver
+
+  cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  make
+}
+
+package() {
+  cd liquid-terminal-$pkgver
+  make DESTDIR="$pkgdir" install
+}

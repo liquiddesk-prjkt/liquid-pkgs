@@ -1,0 +1,26 @@
+# Maintainer: UsiFX <xprjkts@gmail.com>
+
+pkgname=liquid-dock
+pkgver=0.2
+pkgrel=1
+pkgdesc="LiquidOS application dock"
+arch=('x86_64')
+url="https://github.com/liquiddesk-prjkt/liquid-dock"
+license=('GPL')
+groups=('cutede')
+depends=('fishui' 'qt5-svg')
+makedepends=('extra-cmake-modules' 'ninja' 'qt5-tools')
+source=("https://github.com/liquiddesk-prjkt/liquid-dock/archive/$pkgver/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+  cd liquid-dock-$pkgver
+
+  cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  make
+}
+
+package() {
+  cd liquid-dock-$pkgver
+  make DESTDIR="$pkgdir" install
+}

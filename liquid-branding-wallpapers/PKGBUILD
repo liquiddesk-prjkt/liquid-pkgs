@@ -1,0 +1,26 @@
+# Maintainer: UsiFX <xprjkts@gmail.com>
+
+pkgname=liquid-branding-wallpapers
+pkgver=0.3
+pkgrel=1
+pkgdesc="LiquidOS's system wallpaper"
+arch=('any')
+url="https://github.com/liquiddesk-prjkt/liquid_wallpapers"
+license=('GPL')
+depends=()
+group=("cutede")
+makedepends=('cmake' 'ninja')
+source=("https://github.com/liquiddesk-prjkt/liquid_wallpapers/archive/$pkgver/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+  cd liquid_wallpapers-$pkgver
+
+  cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr .
+  ninja
+}
+
+package() {
+  cd liquid_wallpapers-$pkgver
+  DESTDIR="$pkgdir" ninja install
+}

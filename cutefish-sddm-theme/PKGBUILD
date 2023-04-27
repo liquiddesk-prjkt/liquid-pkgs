@@ -1,0 +1,28 @@
+# Maintainer: Bartosz Szplet <bartosz300@gmail.com>
+# Packager: UsiFX <xprjkts@gmail.com>
+
+pkgname=cutefish-sddm-theme
+_pkgname=cutefish-sddm-theme
+pkgver=0.6
+pkgrel=1
+pkgdesc="CutefishOS SDDM Theme"
+arch=('x86_64')
+url="https://github.com/cutefishos/sddm-theme"
+license=('GPLv3')
+groups=('cutefish-git')
+makedepends=('extra-cmake-modules' 'ninja' 'qt5-tools' 'git')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=("git+$url.git")
+sha512sums=('SKIP')
+
+build() {
+	cd sddm-theme
+	cmake -DCMAKE_INSTALL_PREFIX=/usr .
+	make
+}
+
+package() {
+	cd sddm-theme
+	make DESTDIR="$pkgdir" install
+}

@@ -1,0 +1,27 @@
+# Maintainer: UsiFX <xprjkts@gmail.com>
+
+pkgname=liquid-core
+pkgver=0.2
+pkgrel=1
+pkgdesc="System components and backend of LiquidOS"
+arch=('x86_64')
+url="https://github.com/liquiddesk-prjkt/cutede-core"
+license=('GPL')
+groups=('cutede')
+depends=('fishui' 'kidletime' 'libcutefish' 'libpulse' 'libxcb' 'libxcursor' 'libxtst' 'polkit-qt5'
+         'xf86-input-libinput' 'xf86-input-synaptics')
+makedepends=('extra-cmake-modules' 'ninja' 'qt5-tools' 'xorg-server-devel')
+source=("https://github.com/liquiddesk-prjkt/cutede-core/archive/$pkgver/$pkgver.tar.gz")
+sha512sums=('SKIP')
+
+build() {
+  cd cutede-core-$pkgver
+
+  cmake -DCMAKE_INSTALL_PREFIX=/usr .
+  make
+}
+
+package() {
+  cd cutede-core-$pkgver
+  make DESTDIR="$pkgdir" install
+}
